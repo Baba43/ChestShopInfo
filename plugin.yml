@@ -1,12 +1,19 @@
 name: ChestShopInfo
-main: com.JOO.ChestShopInfo.ChestShopInfo
-loadbefore: [ChestShop]
-
 version: 1.0
+description: Informationen ueber Chestshop.
+author: JOO200
+main: com.JOO.ChestShopInfo.ChestShopInfo
+prefix: ChestShopInfo
+default-permission: false
+depend: [ChestShop]
+
 commands:
-  chestshop:
-    description: Informationen über ein Chetsshop
-    usage: /chestshop mit Blick auf ein Shopschild.	
   shopinfo:
-    description: Informationen über ein Chetsshop
-    usage: /shopinfo mit Blick auf ein Shopschild.	
+    description: Informationen ueber einen Chestshop.
+    usage: Use /shopinfo
+    permission: ChestShopInfo.use
+
+permissions:
+  ChestShopInfo.use:
+    description: Erlaubt das Nutzen von /shopinfo.
+    default: true

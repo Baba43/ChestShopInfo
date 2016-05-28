@@ -8,9 +8,7 @@ public class ChestShopInfo extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		myExecutor = new MyCommandExecutor(this);
-		getCommand("chestshop").setExecutor(myExecutor);
 		getCommand("shopinfo").setExecutor(myExecutor);
-		
 		
 	}
 	
