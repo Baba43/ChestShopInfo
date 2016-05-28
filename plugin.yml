@@ -4,6 +4,9 @@ loadbefore: [ChestShop]
 
 version: 1.0
 commands:
-  CS-Info:
-    description: Irgendwas
-    usage: /CS-Info mit Blick auf ein Shopschild.	
+  chestshop:
+    description: Informationen über ein Chetsshop
+    usage: /chestshop mit Blick auf ein Shopschild.	
+  shopinfo:
+    description: Informationen über ein Chetsshop
+    usage: /shopinfo mit Blick auf ein Shopschild.	
