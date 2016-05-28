@@ -1,0 +1,9 @@
+name: ChestShopInfo
+main: com.JOO.ChestShopInfo.ChestShopInfo
+loadbefore: [ChestShop]
+
+version: 1.0
+commands:
+  CS-Info:
+    description: Irgendwas
+    usage: /CS-Info mit Blick auf ein Shopschild.	
