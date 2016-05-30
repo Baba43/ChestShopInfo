@@ -20,7 +20,6 @@ import com.Acrobot.ChestShop.Signs.ChestShopSign;
 import com.sainttx.auctions.util.ReflectionUtil;
 
 import net.md_5.bungee.api.ChatColor;
-import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -84,13 +83,19 @@ public class MyCommandExecutor implements CommandExecutor {
 
 		ItemStack item = MaterialUtil.getItem(signItemName); // Bekomme ItemStack über ChestShop-Methode
 
-		String displayName1 = ""; // Zusatz bei umbenannten Items
-		String displayName2 = "";
-		String displayName3 = "";
+		TextComponent temp = null;	//temporar TextComponent
+		TextComponent displayName = null;
 		if (item.hasItemMeta() && item.getItemMeta().hasDisplayName()) {
-			displayName1 = " (umbenannt zu: ";
-			displayName2 = item.getItemMeta().getDisplayName();
-			displayName3 = ")";
+			displayName = new TextComponent (" (umbenannt zu: ");
+			displayName.setColor(ChatColor.DARK_GRAY);
+			
+			temp = new TextComponent (item.getItemMeta().getDisplayName());
+			temp.setColor(ChatColor.GREEN);
+			displayName.addExtra(temp);
+			
+			temp = new TextComponent (")");
+			temp.setColor(ChatColor.DARK_GRAY);
+			displayName.addExtra(temp);
 		}
 
 		String itemString = null; // Umwandlung des ItemStacks zu JSON. Für Hovereffekt
@@ -105,57 +110,105 @@ public class MyCommandExecutor implements CommandExecutor {
 
 		String itemMaterialString = item.getType().toString(); // Übersetze aufs Deutsche
 		String translatedName = null;
-		if (amount.equalsIgnoreCase("1")) { // Für ein Item.
-			amount = "Ein";
+		if (amount.equalsIgnoreCase("1")) { // Singular
+			amount = "ein";
 			translatedName = getTranslatedMaterial.translation(itemMaterialString);
 		} else { // Plural
 			translatedName = getTranslatedMaterial.translation2(itemMaterialString);
 
 		}
+		
+		player.spigot().sendMessage(getInfoText());
 
 		if (buy) { // Wenn der Shop verkauft (man kann kaufen)
 			double buyPriceDouble = PriceUtil.getBuyPrice(prices);
 			String buyPrice = null;
 			if (buyPriceDouble == 1) { // Wenn das Item nur 1 Eskone kostet
 				buyPrice = "eine Eskone";
+			} else if (buyPriceDouble == 0) {
+				buyPrice = "umsonst";
 			} else { // ansonsten "Zahl + Eskonen"
 				buyPrice = String.valueOf(buyPriceDouble) + " Eskonen";
 			}
-			// 1. Zeile: [Info]: Dieser Shop verkauft:
-			BaseComponent[] baseComponent = new ComponentBuilder("" + getInfoText() + "").color(ChatColor.GREEN)
-					.append("Dieser Shop verkauft:").color(ChatColor.GRAY).create();
-			TextComponent message = new TextComponent(baseComponent);
-			player.spigot().sendMessage(message);
+			// [Info]: Dieser Shop verkauft xx Items (umbenannt zu xxx) für x Eskonen.
+			
+			TextComponent toSend = new TextComponent("Dieser Shop verkauft ");
+			toSend.setColor(ChatColor.GRAY);
 
-			// 2. Zeile: Anzahl von Items (umbenannt zu xxx) für xxx Eskonen.
-			baseComponent = new ComponentBuilder("" + amount + " ").color(ChatColor.GOLD).append(translatedName)
-					.color(ChatColor.GOLD).event(event).append(displayName1).reset().color(ChatColor.DARK_GRAY)
-					.append(displayName2).color(ChatColor.GREEN).append(displayName3).color(ChatColor.DARK_GRAY)
-					.append(" für ").color(ChatColor.GRAY).append("" + buyPrice + "").color(ChatColor.GOLD).append(".")
-					.color(ChatColor.GRAY).create();
-			message = new TextComponent(baseComponent);
-			player.spigot().sendMessage(message);
+			temp = new TextComponent(""+ amount + " ");
+			temp.setColor(ChatColor.GOLD);
+			toSend.addExtra(temp);
+						
+			temp = new TextComponent (translatedName);
+			temp.setColor(ChatColor.GOLD);
+			temp.setHoverEvent(event);
+			toSend.addExtra(temp);
+						
+			if(displayName != null) {
+				player.spigot().sendMessage(toSend);
+				
+				toSend = new TextComponent(displayName.duplicate());
+			}
+			
+			temp = new TextComponent(" für ");
+			temp.setColor(ChatColor.GRAY);
+			toSend.addExtra(temp);
+			
+			temp = new TextComponent("" + buyPrice + "");
+			temp.setColor(ChatColor.GOLD);
+			toSend.addExtra(temp);
+			
+			temp = new TextComponent(".");
+			temp.setColor(ChatColor.GRAY);
+			toSend.addExtra(temp);		
+			
+			player.spigot().sendMessage(toSend);
+			
 		}
 		if (sell) { // Ebenso für den Ankauf
 			double sellPriceDouble = PriceUtil.getSellPrice(prices);
 			String sellPrice = null;
 			if (sellPriceDouble == 1) {
 				sellPrice = "eine Eskone";
+			} else if (sellPriceDouble == 0) {
+				sellPrice = "umsonst";
 			} else {
 				sellPrice = String.valueOf(sellPriceDouble) + " Eskonen";
 			}
-			BaseComponent[] baseComponent = new ComponentBuilder("" + getInfoText() + "").color(ChatColor.GREEN)
-					.append("Dieser Shop kauft:").color(ChatColor.GRAY).create();
-			TextComponent message = new TextComponent(baseComponent);
-			player.spigot().sendMessage(message);
+			
+			//[Info]: Dieser Shop kauft xx Items (umbenannt zu xxx) für x Eskonen an.
+			TextComponent toSend  = new TextComponent("Dieser Shop kauft ");
+			toSend.setColor(ChatColor.GRAY);
 
-			baseComponent = new ComponentBuilder("" + amount + " ").color(ChatColor.GOLD).append(translatedName)
-					.color(ChatColor.GOLD).event(event).append(displayName1).reset().color(ChatColor.DARK_GRAY)
-					.append(displayName2).color(ChatColor.GREEN).append(displayName3).color(ChatColor.DARK_GRAY)
-					.append(" für ").color(ChatColor.GRAY).append("" + sellPrice + "").color(ChatColor.GOLD).append(".")
-					.color(ChatColor.GRAY).create();
-			message = new TextComponent(baseComponent);
-			player.spigot().sendMessage(message);
+			temp = new TextComponent(""+ amount + " ");
+			temp.setColor(ChatColor.GOLD);
+			toSend.addExtra(temp);
+						
+			temp = new TextComponent (translatedName);
+			temp.setColor(ChatColor.GOLD);
+			temp.setHoverEvent(event);
+			toSend.addExtra(temp);
+						
+			if(displayName != null) {
+				player.spigot().sendMessage(toSend);
+
+				toSend = new TextComponent(displayName.duplicate());
+			}
+					
+			temp = new TextComponent(" für ");
+			temp.setColor(ChatColor.GRAY);
+			toSend.addExtra(temp);
+				
+			temp = new TextComponent("" + sellPrice + "");
+			temp.setColor(ChatColor.GOLD);
+			toSend.addExtra(temp);
+					
+			temp = new TextComponent(" an.");
+			temp.setColor(ChatColor.GRAY);
+			toSend.addExtra(temp);			
+			
+			player.spigot().sendMessage(toSend);
+									
 		}
 
 		return true;
@@ -164,8 +217,13 @@ public class MyCommandExecutor implements CommandExecutor {
 
 	// Info-Text (TODO: Auslagerung in Methode von baba43lib zur
 	// Vereinheitlichung auf Terraconia)
-	private String getInfoText() {
-		String info = "[Info]: ";
+	private TextComponent getInfoText() {
+		TextComponent info = new TextComponent("[ShopInfo]: ");
+		info.setColor(ChatColor.GREEN);
+		TextComponent temp = new TextComponent("Informationen über einen ChestShop:");
+		temp.setColor(ChatColor.GRAY);
+		info.addExtra(temp);
+		
 		return info;
 	}
 
