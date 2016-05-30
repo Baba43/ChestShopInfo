@@ -17,6 +17,7 @@ import org.bukkit.inventory.ItemStack;
 import com.Acrobot.Breeze.Utils.MaterialUtil;
 import com.Acrobot.Breeze.Utils.PriceUtil;
 import com.Acrobot.ChestShop.Signs.ChestShopSign;
+import com.Acrobot.ChestShop.UUIDs.NameManager;
 import com.sainttx.auctions.util.ReflectionUtil;
 
 import net.md_5.bungee.api.ChatColor;
@@ -75,6 +76,9 @@ public class MyCommandExecutor implements CommandExecutor {
 		}
 		
 		Sign sign = (Sign) block.getState();
+		String name = sign.getLine(0);
+        String ownerName = NameManager.getFullUsername(name);		//Name vom ChestShop Besitzer
+        
 		String amount = sign.getLine(1);
 		String prices = sign.getLine(2);
 		String signItemName = sign.getLine(3);
@@ -118,7 +122,7 @@ public class MyCommandExecutor implements CommandExecutor {
 
 		}
 		
-		player.spigot().sendMessage(getInfoText());
+		player.spigot().sendMessage(getInfoText(ownerName));
 
 		if (buy) { // Wenn der Shop verkauft (man kann kaufen)
 			double buyPriceDouble = PriceUtil.getBuyPrice(prices);
@@ -217,12 +221,13 @@ public class MyCommandExecutor implements CommandExecutor {
 
 	// Info-Text (TODO: Auslagerung in Methode von baba43lib zur
 	// Vereinheitlichung auf Terraconia)
-	private TextComponent getInfoText() {
+	private TextComponent getInfoText(String pString) {
 		TextComponent info = new TextComponent("[ShopInfo]: ");
 		info.setColor(ChatColor.GREEN);
-		TextComponent temp = new TextComponent("Informationen über einen ChestShop:");
+		TextComponent temp = new TextComponent("Informationen über einen ChestShop von " + pString+ ":");
 		temp.setColor(ChatColor.GRAY);
 		info.addExtra(temp);
+		
 		
 		return info;
 	}
