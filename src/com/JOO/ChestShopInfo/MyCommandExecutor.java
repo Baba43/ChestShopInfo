@@ -113,13 +113,12 @@ public class MyCommandExecutor implements CommandExecutor {
 		}
 		HoverEvent event = new HoverEvent(HoverEvent.Action.SHOW_ITEM, new ComponentBuilder(itemString).create()); // HoverEffekt erstellt
 
-		String itemMaterialString = item.getType().toString(); // Übersetze aufs Deutsche
 		String translatedName = null;
 		if (amount.equalsIgnoreCase("1")) { // Singular
 			amount = "ein(e)";
-			translatedName = getTranslatedMaterial.translation(itemMaterialString);
+			translatedName = getTranslatedMaterial.translation(item.getType());
 		} else { // Plural
-			translatedName = getTranslatedMaterial.translation2(itemMaterialString);
+			translatedName = getTranslatedMaterial.translation2(item.getType());
 
 		}
 		
