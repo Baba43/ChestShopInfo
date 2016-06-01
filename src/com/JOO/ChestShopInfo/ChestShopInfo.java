@@ -2,25 +2,28 @@ package com.JOO.ChestShopInfo;
 
 import java.io.File;
 
-
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class ChestShopInfo extends JavaPlugin {
+	
 	private MyCommandExecutor myExecutor;
 	public static Plugin plugin;
-	public MaterialTranslations translations;
 	public static ChestShopInfo instance;
+	
+	public MaterialTranslations translations;
 	public static boolean debug=false;
+	public static FileConfiguration config = null;
+	
+	
 	@Override
 	public void onEnable() {
 		
-		final FileConfiguration config = this.getConfig();
+		config = this.getConfig();
+		
 		createConfig();
-		config.options().copyDefaults(true);
-		saveConfig();
 		translations = new MaterialTranslations(this);
 		
 		myExecutor = new MyCommandExecutor(this);
@@ -44,6 +47,7 @@ public class ChestShopInfo extends JavaPlugin {
                 saveDefaultConfig();
             } else {
                 getLogger().info("Config.yml found, loading!");
+                reloadConfig();
             }
         } catch (Exception e) {
             e.printStackTrace();

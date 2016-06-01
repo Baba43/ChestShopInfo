@@ -34,8 +34,8 @@ public class MyCommandExecutor implements CommandExecutor {
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String cmdLabel, String[] args) {
-
-		Player player = (Player) sender;
+		Player player = null;
+		if (sender instanceof Player) player = (Player) sender;
 		// Rückmeldung bei "/chestshop info"
 		if (args.length == 1 && args[0].equalsIgnoreCase("info")) {
 			sender.sendMessage(ChatColor.GRAY + "Informationsplugin von JOO200.");
@@ -51,7 +51,7 @@ public class MyCommandExecutor implements CommandExecutor {
 		}
 		
 		if(args.length == 1 && args[0].equalsIgnoreCase("reload")) {
-			if(!player.hasPermission("ChestShopInfo.reload")) {
+			if(!sender.hasPermission("ChestShopInfo.reload")) {
 				sender.sendMessage(ChatColor.RED + "Du hast keine Berechtigung, diesen Befehl auszuführen.");
 				return true;
 			}
@@ -62,7 +62,7 @@ public class MyCommandExecutor implements CommandExecutor {
 		}
 		
 		if(args.length == 2 && args[0].equalsIgnoreCase("debug")) {
-			if(!player.hasPermission("ChestShopInfo.debug")) {
+			if(!sender.hasPermission("ChestShopInfo.debug")) {
 				sender.sendMessage(ChatColor.RED + "Du hast keine Berechtigung, diesen Befehl auszuführen.");
 				return true;
 			}
@@ -79,8 +79,8 @@ public class MyCommandExecutor implements CommandExecutor {
 					sender.sendMessage(ChatColor.RED + "Debug-Modus ist aktiviert.");
 					return true;
 				} else {
-					 sender.sendMessage(ChatColor.RED + "Debug-Modus ist deaktiviert.");
-					 return true;
+					sender.sendMessage(ChatColor.RED + "Debug-Modus ist deaktiviert.");
+					return true;
 				}
 			}
 			else {

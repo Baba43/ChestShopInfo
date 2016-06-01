@@ -23,17 +23,21 @@ public class MaterialTranslations {
   */
     public MaterialTranslations( ChestShopInfo instance) {
     	plugin = instance;
-    	FileConfiguration cfg = plugin.getConfig();
+    	FileConfiguration cfg = ChestShopInfo.config;
     	if(cfg == null) System.out.println("Fehler");	// Einsatz vom Logger
     	
     	ConfigurationSection cfgSection = cfg.getConfigurationSection("translations");
     	for(String key : cfgSection.getKeys(false)) {
-	    	Material mat = Material.getMaterial(key);
-	    	String singular = cfg.getString("translations." + key + ".singular");
-	    	String plural = cfg.getString("translations." + key + ".plural");
-	    	String article = cfg.getString("translations." + key + ".article");
-	    	if(ChestShopInfo.debug) System.out.println("New map: " + key + ", " + singular + ", " + plural + ", " + article + "");
-	        addMaterial(mat, singular, plural, article);
+	    	try {
+	    		Material mat = Material.getMaterial(key);
+		    	String singular = cfg.getString("translations." + key + ".singular");
+		    	String plural = cfg.getString("translations." + key + ".plural");
+		    	String article = cfg.getString("translations." + key + ".article");
+		    	if(ChestShopInfo.debug) System.out.println("New map: " + key + ", " + singular + ", " + plural + ", " + article + "");
+		        addMaterial(mat, singular, plural, article);
+	    	} catch (NullPointerException e) {
+	    		System.out.println("Fehlerhafte Formatierung bei Material" + key);
+	    	}
     	}
     }
 
