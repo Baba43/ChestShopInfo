@@ -26,13 +26,16 @@ import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 
 public class MyCommandExecutor implements CommandExecutor {
+	ChestShopInfo plugin;
 
-	public MyCommandExecutor(ChestShopInfo plugin) {
+	public MyCommandExecutor(ChestShopInfo instance) {
+		plugin = instance;
 	}
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String cmdLabel, String[] args) {
 
+		Player player = (Player) sender;
 		// Rückmeldung bei "/chestshop info"
 		if (args.length == 1 && args[0].equalsIgnoreCase("info")) {
 			sender.sendMessage(ChatColor.GRAY + "Informationsplugin von JOO200.");
@@ -46,15 +49,52 @@ public class MyCommandExecutor implements CommandExecutor {
 					+ ChatColor.GOLD + "/shopinfo" + ChatColor.GRAY + " aus.");
 			return true;
 		}
+		
+		if(args.length == 1 && args[0].equalsIgnoreCase("reload")) {
+			if(!player.hasPermission("ChestShopInfo.reload")) {
+				sender.sendMessage(ChatColor.RED + "Du hast keine Berechtigung, diesen Befehl auszuführen.");
+				return true;
+			}
+			// hier fehlt noch eine Konsolenausgabe!
+			sender.sendMessage(ChatColor.RED + "Das Plugin wird neu geladen.");
+			plugin.onEnable();
+			return true;
+		}
+		
+		if(args.length == 2 && args[0].equalsIgnoreCase("debug")) {
+			if(!player.hasPermission("ChestShopInfo.debug")) {
+				sender.sendMessage(ChatColor.RED + "Du hast keine Berechtigung, diesen Befehl auszuführen.");
+				return true;
+			}
+			if(args[1].equalsIgnoreCase("true")) {
+				ChestShopInfo.debug = true;
+				sender.sendMessage(ChatColor.RED + "Debug-Modus aktiviert.");
+				return true;
+			} else if(args[1].equalsIgnoreCase("false")) {
+				ChestShopInfo.debug = false;
+				sender.sendMessage(ChatColor.RED + "Debug-Modus deaktiviert.");
+				return true;
+			} else if(args[1].equalsIgnoreCase("status")) {
+				if(ChestShopInfo.debug) { 
+					sender.sendMessage(ChatColor.RED + "Debug-Modus ist aktiviert.");
+					return true;
+				} else {
+					 sender.sendMessage(ChatColor.RED + "Debug-Modus ist deaktiviert.");
+					 return true;
+				}
+			}
+			else {
+				sender.sendMessage(ChatColor.RED + "Ungültige Eingabe. (true | false)");
+				return true;
+			}
+		}
 
 		// Kontrolle, ob der Befehl von einem Spieler ausgeführt wurde.
 		if (!(sender instanceof Player)) {
 			sender.sendMessage(ChatColor.RED + "Du musst ein Spieler sein.");
 			return true;
 		}
-
-		Player player = (Player) sender;
-		
+				
 		// Kontrolle der Permissions
 		if (!player.hasPermission("ChestShopInfo.use")) {
 			sender.sendMessage(ChatColor.RED + "Du hast keine Berechtigung, diesen Befehl auszuführen.");
@@ -62,13 +102,12 @@ public class MyCommandExecutor implements CommandExecutor {
 		}
 
 		Block block = targetBlock(player);
-
 		// Kontrolle, ob angeschauter Block ein Schild ist.
 		if (block.getType() != Material.SIGN_POST && block.getType() != Material.WALL_SIGN) {
 			player.sendMessage(ChatColor.RED + "Du musst ein Schild anschauen");
 			return true;
 		}
-		
+	
 		// Kontrolle, ob Schild ein ChestShop-Schild ist
 		if (!ChestShopSign.isValid(block)) {
 			player.sendMessage(ChatColor.RED + "Dies ist kein gültiges Shopschild!");
@@ -85,9 +124,11 @@ public class MyCommandExecutor implements CommandExecutor {
 		String signItemName = sign.getLine(3);
 		boolean buy = prices.contains("B") | prices.contains("b");
 		boolean sell = prices.contains("S") | prices.contains("s");
-
+		
 		ItemStack item = MaterialUtil.getItem(signItemName); // Bekomme ItemStack über ChestShop-Methode
-
+		Material material = item.getType();
+		MaterialTranslations translations = plugin.translations;
+		
 		TextComponent temp = null;	//temporar TextComponent
 		TextComponent displayName = null;
 		if (item.hasItemMeta() && item.getItemMeta().hasDisplayName()) {
@@ -102,6 +143,7 @@ public class MyCommandExecutor implements CommandExecutor {
 			temp.setColor(ChatColor.DARK_GRAY);
 			displayName.addExtra(temp);
 		}
+		
 
 		String itemString = null; // Umwandlung des ItemStacks zu JSON. Für Hovereffekt
 		try {
@@ -113,13 +155,10 @@ public class MyCommandExecutor implements CommandExecutor {
 		}
 		HoverEvent event = new HoverEvent(HoverEvent.Action.SHOW_ITEM, new ComponentBuilder(itemString).create()); // HoverEffekt erstellt
 
-		String translatedName = null;
-		if (amount.equalsIgnoreCase("1")) { // Singular
-			amount = "ein(e)";
-			translatedName = getTranslatedMaterial.translation(item.getType());
-		} else { // Plural
-			translatedName = getTranslatedMaterial.translation2(item.getType());
+		String translatedName = translations.getTranslation(material, Integer.parseInt(amount));
 
+		if (amount.equalsIgnoreCase("1")) { // Singular
+			amount = translations.getArticle(material);
 		}
 		
 		player.spigot().sendMessage(getInfoText(ownerName));
@@ -237,13 +276,11 @@ public class MyCommandExecutor implements CommandExecutor {
 			player.spigot().sendMessage(toSend);
 									
 		}
-
 		return true;
-
 	}
 	
-	// Info-Text (TODO: Auslagerung in Methode von baba43lib zur
-	// Vereinheitlichung auf Terraconia)
+	
+	// Info-Text
 	private TextComponent getInfoText(String pString) {
 		TextComponent info = new TextComponent("[ShopInfo]: ");
 		info.setColor(ChatColor.GREEN);
