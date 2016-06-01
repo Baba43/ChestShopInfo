@@ -116,7 +116,7 @@ public class MyCommandExecutor implements CommandExecutor {
 		String itemMaterialString = item.getType().toString(); // Übersetze aufs Deutsche
 		String translatedName = null;
 		if (amount.equalsIgnoreCase("1")) { // Singular
-			amount = "ein";
+			amount = "ein(e)";
 			translatedName = getTranslatedMaterial.translation(itemMaterialString);
 		} else { // Plural
 			translatedName = getTranslatedMaterial.translation2(itemMaterialString);
