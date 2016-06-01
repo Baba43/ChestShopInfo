@@ -80,6 +80,7 @@ public class MyCommandExecutor implements CommandExecutor {
         String ownerName = NameManager.getFullUsername(name);		//Name vom ChestShop Besitzer
         
 		String amount = sign.getLine(1);
+		Double amountDouble = Double.parseDouble(amount);
 		String prices = sign.getLine(2);
 		String signItemName = sign.getLine(3);
 		boolean buy = prices.contains("B") | prices.contains("b");
@@ -134,6 +135,17 @@ public class MyCommandExecutor implements CommandExecutor {
 			} else { // ansonsten "Zahl + Eskonen"
 				buyPrice = String.valueOf(buyPriceDouble) + " Eskonen";
 			}
+			
+			double pricePerItem = Math.round(100.0*buyPriceDouble / amountDouble);
+			double pricePerStack = Math.round(6400.0*buyPriceDouble / amountDouble) ;
+			pricePerItem = pricePerItem/100;
+			pricePerStack = pricePerStack/100;
+			
+			
+			HoverEvent price = new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(
+					ChatColor.GRAY + "Preis pro Stück: " + ChatColor.GOLD + pricePerItem + " Eskonen. \n" +
+					ChatColor.GRAY + "Preis pro Stack: " + ChatColor.GOLD + pricePerStack + " Eskonen.").create());
+			
 			// [Info]: Dieser Shop verkauft xx Items (umbenannt zu xxx) für x Eskonen.
 			
 			TextComponent toSend = new TextComponent("Dieser Shop verkauft ");
@@ -159,6 +171,7 @@ public class MyCommandExecutor implements CommandExecutor {
 			toSend.addExtra(temp);
 			
 			temp = new TextComponent("" + buyPrice + "");
+			temp.setHoverEvent(price);
 			temp.setColor(ChatColor.GOLD);
 			toSend.addExtra(temp);
 			
@@ -179,6 +192,16 @@ public class MyCommandExecutor implements CommandExecutor {
 			} else {
 				sellPrice = String.valueOf(sellPriceDouble) + " Eskonen";
 			}
+
+			//Anzeige des Preises/Stack und /Stück im Hover.
+			double pricePerItem = Math.round(100.0*sellPriceDouble / amountDouble);
+			double pricePerStack = Math.round(6400.0*sellPriceDouble / amountDouble) ;
+			pricePerItem = pricePerItem/100;
+			pricePerStack = pricePerStack/100;
+			
+			HoverEvent price = new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(
+					ChatColor.GRAY + "Preis pro Stück: " + ChatColor.GOLD + pricePerItem + " Eskonen. \n" +
+					ChatColor.GRAY + "Preis pro Stack: " + ChatColor.GOLD + pricePerStack + " Eskonen.").create());
 			
 			//[Info]: Dieser Shop kauft xx Items (umbenannt zu xxx) für x Eskonen an.
 			TextComponent toSend  = new TextComponent("Dieser Shop kauft ");
@@ -204,6 +227,7 @@ public class MyCommandExecutor implements CommandExecutor {
 			toSend.addExtra(temp);
 				
 			temp = new TextComponent("" + sellPrice + "");
+			temp.setHoverEvent(price);
 			temp.setColor(ChatColor.GOLD);
 			toSend.addExtra(temp);
 					
@@ -218,7 +242,7 @@ public class MyCommandExecutor implements CommandExecutor {
 		return true;
 
 	}
-
+	
 	// Info-Text (TODO: Auslagerung in Methode von baba43lib zur
 	// Vereinheitlichung auf Terraconia)
 	private TextComponent getInfoText(String pString) {
