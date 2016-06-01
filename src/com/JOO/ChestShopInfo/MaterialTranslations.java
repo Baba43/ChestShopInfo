@@ -23,7 +23,7 @@ public class MaterialTranslations {
   */
     public MaterialTranslations( ChestShopInfo instance) {
     	plugin = instance;
-    	FileConfiguration cfg = ChestShopInfo.config;
+    	FileConfiguration cfg = plugin.getConfig();
     	if(cfg == null) System.out.println("Fehler");	// Einsatz vom Logger
     	
     	ConfigurationSection cfgSection = cfg.getConfigurationSection("translations");

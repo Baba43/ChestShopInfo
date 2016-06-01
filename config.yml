@@ -1,19 +1,19 @@
-translations:
+ï»¿translations:
   ACACIA_DOOR:
-    singular: Akazienholztür
-    plural: Akazienholztüren
+    singular: AkazienholztÃ¼r
+    plural: AkazienholztÃ¼ren
     article: eine
   ACACIA_DOOR_ITEM:
-    singular: Akazienholztür
-    plural: Akzienholztüren
+    singular: AkazienholztÃ¼r
+    plural: AkzienholztÃ¼ren
     article: eine
   ACACIA_FENCE:
     singular: Akazienholzzaun
-    plural: Akazienholzzäune
+    plural: AkazienholzzÃ¤une
     article: einen
   ACACIA_FENCE_GATE:
-    singular: Akazienholzzauntür
-    plural: Akazienholzzauntüren
+    singular: AkazienholzzauntÃ¼r
+    plural: AkazienholzzauntÃ¼ren
     article: eine
   ACACIA_STAIRS:
     singular: Akazienholztreppe
@@ -33,11 +33,11 @@ translations:
     article: einen
   APPLE:
     singular: Apfel
-    plural: Äpfel
+    plural: Ã„pfel
     article: einen
   ARMOR_STAND:
-    singular: Rüstungsständer
-    plural: Rüstungsständer
+    singular: RÃ¼stungsstÃ¤nder
+    plural: RÃ¼stungsstÃ¤nder
     article: einen
   ARROW:
     singular: Pfeil
@@ -71,20 +71,20 @@ translations:
     plural: Grundsteine
     article: ein
   BIRCH_DOOR:
-    singular: Birkenholztür
-    plural: Birkenholztüren
+    singular: BirkenholztÃ¼r
+    plural: BirkenholztÃ¼ren
     article: eine
   BIRCH_DOOR_ITEM:
-    singular: Birkenholztür
-    plural: Birkenholztüren
+    singular: BirkenholztÃ¼r
+    plural: BirkenholztÃ¼ren
     article: eine
   BIRCH_FENCE:
     singular: Birkenholzzaun
-    plural: Birkenholzzäune
+    plural: BirkenholzzÃ¤une
     article: einen
   BIRCH_FENCE_GATE:
-    singular: Birkenholzzauntür
-    plural: Birkenholzzauntüren
+    singular: BirkenholzzauntÃ¼r
+    plural: BirkenholzzauntÃ¼ren
     article: eine
   BIRCH_WOOD_STAIRS:
     singular: Birkenholztreppe
@@ -108,23 +108,23 @@ translations:
     article: ein
   BOOK:
     singular: Buch
-    plural: Bücher
+    plural: BÃ¼cher
     article: ein
   BOOK_AND_QUILL:
     singular: Buch und Feder
-    plural: Bücher und Federn
+    plural: BÃ¼cher und Federn
     article: ein
   BOOKSHELF:
-    singular: Bücherregal
-    plural: Bücherregale
+    singular: BÃ¼cherregal
+    plural: BÃ¼cherregale
     article: ein
   BOW:
     singular: Bogen
     plural: Bogen
     article: einen
   BOWL:
-    singular: Schüssel
-    plural: Schüsseln
+    singular: SchÃ¼ssel
+    plural: SchÃ¼sseln
     article: eine
   BREAD:
     singular: Brot
@@ -132,11 +132,11 @@ translations:
     article: ein
   BREWING_STAND:
     singular: Braustand
-    plural: Braustände
+    plural: BraustÃ¤nde
     article: einen
   BREWING_STAND_ITEM:
     singular: Braustand
-    plural: Braustände
+    plural: BraustÃ¤nde
     article: einen
   BRICK:
     singular: Ziegelssteine
@@ -155,7 +155,7 @@ translations:
     article: einen
   BURNING_FURNACE:
     singular: brennender Ofen
-    plural: brennende Öfen
+    plural: brennende Ã–fen
     article: einen
   CACTUS:
     singular: Kaktus
@@ -219,7 +219,7 @@ translations:
     article: einen
   CLAY_BALL:
     singular: Tonball
-    plural: Tonbälle
+    plural: TonbÃ¤lle
     article: einen
   CLAY_BRICK:
     singular: Ziegel
@@ -231,7 +231,7 @@ translations:
     article: eine
   COAL_BLOCK:
     singular: Kohleblock
-    plural: Kohleblöcke
+    plural: KohleblÃ¶cke
     article: einen
   COAL_ORE:
     singular: Kohleerz
@@ -255,7 +255,7 @@ translations:
     article: eine
   COMMAND:
     singular: Kommandoblock
-    plural: Kommandoblöcke
+    plural: KommandoblÃ¶cke
     article: einen
   COMMAND_MINECART:
     singular: 
@@ -270,8 +270,8 @@ translations:
     plural: Steak
     article: ein
   COOKED_CHICKEN:
-    singular: Gebratenes Hühnchen
-    plural: Gebratene Hühnchen
+    singular: Gebratenes HÃ¼hnchen
+    plural: Gebratene HÃ¼hnchen
     article: ein
   COOKED_FISH:
     singular: Gebratener Kabeljau
@@ -294,20 +294,20 @@ translations:
     plural: 
     article: eine
   DARK_OAK_DOOR:
-    singular: Schwarzeichenholztür
-    plural: Schwarzeichenholztüren
+    singular: SchwarzeichenholztÃ¼r
+    plural: SchwarzeichenholztÃ¼ren
     article: eine
   DARK_OAK_DOOR_ITEM:
-    singular: Schwarzeichenholztür
-    plural: Schwarzeichenholztüren
+    singular: SchwarzeichenholztÃ¼r
+    plural: SchwarzeichenholztÃ¼ren
     article: eine
   DARK_OAK_FENCE:
     singular: Schwarzeichenholzzaun
-    plural: Schwarzeichenholzzäune
+    plural: SchwarzeichenholzzÃ¤une
     article: einen
   DARK_OAK_FENCE_GATE:
-    singular: Schwarzeichenholzzauntür
-    plural: Schwarzeichenholzzauntüren
+    singular: SchwarzeichenholzzauntÃ¼r
+    plural: SchwarzeichenholzzauntÃ¼ren
     article: eine
   DARK_OAK_STAIRS:
     singular: Schwarzeichenholztreppe
@@ -323,7 +323,7 @@ translations:
     article: einen
   DEAD_BUSH:
     singular: Toten Busch
-    plural: Tote Büsche
+    plural: Tote BÃ¼sche
     article: einen
   DETECTOR_RAIL:
     singular: Sensorschiene
@@ -335,15 +335,15 @@ translations:
     article: einen
   DIAMOND_AXE:
     singular: Diamantaxt
-    plural: Diamantäxte
+    plural: DiamantÃ¤xte
     article: eine
   DIAMOND_BARDING:
-    singular: Diamantene Pferderüstung
-    plural: Diamantene Pferderüstungen
+    singular: Diamantene PferderÃ¼stung
+    plural: Diamantene PferderÃ¼stungen
     article: eine
   DIAMOND_BLOCK:
     singular: Diamantblock
-    plural: Diamantblöcke
+    plural: DiamantblÃ¶cke
     article: einen
   DIAMOND_BOOTS:
     singular: Diamantstiefel
@@ -431,7 +431,7 @@ translations:
     article: einen
   EMERALD_BLOCK:
     singular: Smaragdblock
-    plural: Smaragdblöcke
+    plural: SmaragdblÃ¶cke
     article: einen
   EMERALD_ORE:
     singular: Smaragderz
@@ -443,7 +443,7 @@ translations:
     article: eine
   ENCHANTED_BOOK:
     singular: Verzaubertes Buch
-    plural: Verzauberte Bücher
+    plural: Verzauberte BÃ¼cher
     article: ein
   ENCHANTMENT_TABLE:
     singular: Zaubertisch
@@ -470,8 +470,8 @@ translations:
     plural: Endsteine
     article: einen
   EXP_BOTTLE:
-    singular: Erfahrungsfläschen
-    plural: Erfahrungsfläschen
+    singular: ErfahrungsflÃ¤schen
+    plural: ErfahrungsflÃ¤schen
     article: ein
   EXPLOSIVE_MINECART:
     singular: TNT-Lore
@@ -487,7 +487,7 @@ translations:
     article: eine
   FENCE:
     singular: Eichenholzzaun
-    plural: Eichenholzzäune
+    plural: EichenholzzÃ¤une
     article: einen
   FENCE_GATE:
     singular: Eichenholzzauntor
@@ -527,19 +527,19 @@ translations:
     article: ein
   FLOWER_POT:
     singular: Blumentopf
-    plural: Blumentöpfe
+    plural: BlumentÃ¶pfe
     article: einen
   FLOWER_POT_ITEM:
     singular: Blumentopf
-    plural: Blumentöpfe
+    plural: BlumentÃ¶pfe
     article: einen
   FURNACE:
     singular: Ofen
-    plural: Öfen
+    plural: Ã–fen
     article: einen
   GHAST_TEAR:
-    singular: Ghastträne
-    plural: Ghasttränen
+    singular: GhasttrÃ¤ne
+    plural: GhasttrÃ¤nen
     article: eine
   GLASS:
     singular: Glas
@@ -563,15 +563,15 @@ translations:
     article: einen
   GOLD_AXE:
     singular: Goldaxt
-    plural: Goldäxte
+    plural: GoldÃ¤xte
     article: eine
   GOLD_BARDING:
-    singular: Goldene Pferderüstung
-    plural: Goldene Pferderüstungen
+    singular: Goldene PferderÃ¼stung
+    plural: Goldene PferderÃ¼stungen
     article: eine
   GOLD_BLOCK:
     singular: Goldblock
-    plural: Goldblöcke
+    plural: GoldblÃ¶cke
     article: einen
   GOLD_BOOTS:
     singular: Goldstiefel
@@ -627,7 +627,7 @@ translations:
     article: ein
   GOLDEN_APPLE:
     singular: Goldener Apfel
-    plural: Goldene Äpfel
+    plural: Goldene Ã„pfel
     article: ein
   GOLDEN_CARROT:
     singular: Goldene Karotte
@@ -635,15 +635,15 @@ translations:
     article: eine
   GRASS:
     singular: Grasblock
-    plural: Grasblöcke
+    plural: GrasblÃ¶cke
     article: einen
   GRAVEL:
     singular: Kies
     plural: Kies
     article: ein
   GREEN_RECORD:
-    singular: grüne Schallplatte
-    plural: grüne Schallplatten
+    singular: grÃ¼ne Schallplatte
+    plural: grÃ¼ne Schallplatten
     article: eine
   GRILLED_PORK:
     singular: Gebratenes Schweinefleisch
@@ -667,11 +667,11 @@ translations:
     article: eine
   HUGE_MUSHROOM_1:
     singular: Pilzblock
-    plural: Pilzblöcke
+    plural: PilzblÃ¶cke
     article: einen
   HUGE_MUSHROOM_2:
     singular: Pilzblock
-    plural: Pilzblöcke
+    plural: PilzblÃ¶cke
     article: einen
   ICE:
     singular: Eis
@@ -683,15 +683,15 @@ translations:
     article: einen
   IRON_AXE:
     singular: Eisenaxt
-    plural: Eisenäxte
+    plural: EisenÃ¤xte
     article: eine
   IRON_BARDING:
-    singular: Eisene Pferderüstung
-    plural: Eisene Pferderüstungen
+    singular: Eisene PferderÃ¼stung
+    plural: Eisene PferderÃ¼stungen
     article: eine
   IRON_BLOCK:
     singular: Eisenblock
-    plural: Eisenblöcke
+    plural: EisenblÃ¶cke
     article: ein
   IRON_BOOTS:
     singular: Eisenstiefel
@@ -702,12 +702,12 @@ translations:
     plural: Eisenbrustpanzer
     article: einen
   IRON_DOOR:
-    singular: Eisentür
-    plural: Eisentüren
+    singular: EisentÃ¼r
+    plural: EisentÃ¼ren
     article: eine
   IRON_DOOR_BLOCK:
-    singular: Eisentür
-    plural: Eisentüren
+    singular: EisentÃ¼r
+    plural: EisentÃ¼ren
     article: eine
   IRON_FENCE:
     singular: Eisengitter
@@ -750,36 +750,36 @@ translations:
     plural: Eisenschwerter
     article: ein
   IRON_TRAPDOOR:
-    singular: Eisenfalltür
-    plural: Eisenfalltüren
+    singular: EisenfalltÃ¼r
+    plural: EisenfalltÃ¼ren
     article: eine
   ITEM_FRAME:
     singular: Rahmen
     plural: Rahmen
     article: einen
   JACK_O_LANTERN:
-    singular: Kürbislaterne
-    plural: Kürbislaternen
+    singular: KÃ¼rbislaterne
+    plural: KÃ¼rbislaternen
     article: eine
   JUKEBOX:
     singular: Plattenspieler
     plural: Plattenspieler
     article: einen
   JUNGLE_DOOR:
-    singular: Jungleholztür
-    plural: Jungleholztüren
+    singular: JungleholztÃ¼r
+    plural: JungleholztÃ¼ren
     article: eine
   JUNGLE_DOOR_ITEM:
-    singular: Jungleholztür
-    plural: Jungleholztüren
+    singular: JungleholztÃ¼r
+    plural: JungleholztÃ¼ren
     article: eine
   JUNGLE_FENCE:
     singular: Jungleholzzaun
-    plural: Jungleholzzäune
+    plural: JungleholzzÃ¤une
     article: einen
   JUNGLE_FENCE_GATE:
-    singular: Jungleholzzauntür
-    plural: Jungleholzzauntüren
+    singular: JungleholzzauntÃ¼r
+    plural: JungleholzzauntÃ¼ren
     article: eine
   JUNGLE_WOOD_STAIRS:
     singular: Jungleholztreppe
@@ -791,7 +791,7 @@ translations:
     article: eine
   LAPIS_BLOCK:
     singular: Lapislazuliblock
-    plural: Lapislazuliblöcke
+    plural: LapislazuliblÃ¶cke
     article: einen
   LAPIS_ORE:
     singular: Lapislazulierz
@@ -843,11 +843,11 @@ translations:
     article: einen
   LOG:
     singular: Baumstamm
-    plural: Baumstämme
+    plural: BaumstÃ¤mme
     article: einen
   LOG_2:
     singular: Baumstamm
-    plural: Baumstämme
+    plural: BaumstÃ¤mme
     article: einen
   LONG_GRASS:
     singular: hohes Gras
@@ -867,7 +867,7 @@ translations:
     article: eine
   MELON_BLOCK:
     singular: Melonenblock
-    plural: Melonenblöcke
+    plural: MelonenblÃ¶cke
     article: einen
   MELON_SEEDS:
     singular: Melonenkern
@@ -892,11 +892,11 @@ translations:
   MONSTER_EGG:
     singular: Spawnei
     plural: Spawneier
-    article: einen
+    article: ein
   MONSTER_EGGS:
     singular: Spawnei
     plural: Spawneier
-    article: einen
+    article: ein
   MOSSY_COBBLESTONE:
     singular: Bemoosten Bruchstein
     plural: Bemooste Bruchsteine
@@ -931,7 +931,7 @@ translations:
     article: eine
   NETHER_FENCE:
     singular: Netherziegelzaun
-    plural: Netherziegelzäune
+    plural: NetherziegelzÃ¤une
     article: einen
   NETHER_STALK:
     singular: 
@@ -951,7 +951,7 @@ translations:
     article: einen
   NOTE_BLOCK:
     singular: Notenblock
-    plural: Notenblöcke
+    plural: NotenblÃ¶cke
     article: einen
   OBSIDIAN:
     singular: Obsidian
@@ -962,8 +962,8 @@ translations:
     plural: Packeis
     article: ein
   PAINTING:
-    singular: Gemälde
-    plural: Gemälde
+    singular: GemÃ¤lde
+    plural: GemÃ¤lde
     article: ein
   PAPER:
     singular: Papier
@@ -1007,7 +1007,7 @@ translations:
     article: eine
   POTION:
     singular: Trank
-    plural: Tränke
+    plural: TrÃ¤nke
     article: einen
   POWERED_MINECART:
     singular: Angetriebene Lore
@@ -1019,7 +1019,7 @@ translations:
     article: eine
   PRISMARINE:
     singular: Prismarinblock
-    plural: Prismarinblöcke
+    plural: PrismarinblÃ¶cke
     article: einen
   PRISMARINE_CRYSTALS:
     singular: Prismarinkristall
@@ -1030,20 +1030,20 @@ translations:
     plural: Prismarinscherben
     article: eine
   PUMPKIN:
-    singular: Kürbis
-    plural: Kürbis
+    singular: KÃ¼rbis
+    plural: KÃ¼rbis
     article: einen
   PUMPKIN_PIE:
-    singular: Kürbiskuchen
-    plural: Kürbiskuchen
+    singular: KÃ¼rbiskuchen
+    plural: KÃ¼rbiskuchen
     article: ein
   PUMPKIN_SEEDS:
-    singular: Kürbissamen
-    plural: Kürbissamen
+    singular: KÃ¼rbissamen
+    plural: KÃ¼rbissamen
     article: einen
   PUMPKIN_STEM:
-    singular: Kürbispflanze
-    plural: Kürbispflanzen
+    singular: KÃ¼rbispflanze
+    plural: KÃ¼rbispflanzen
     article: eine
   QUARTZ:
     singular: Netherquarz
@@ -1051,7 +1051,7 @@ translations:
     article: einen
   QUARTZ_BLOCK:
     singular: Quarzblock
-    plural: Quarzblöcke
+    plural: QuarzblÃ¶cke
     article: einen
   QUARTZ_ORE:
     singular: Quarzerz
@@ -1086,8 +1086,8 @@ translations:
     plural: Rohes Rindfleisch
     article: ein
   RAW_CHICKEN:
-    singular: Rohes Hühnchen
-    plural: Rohe Hühnchen
+    singular: Rohes HÃ¼hnchen
+    plural: Rohe HÃ¼hnchen
     article: ein
   RAW_FISH:
     singular: Roher Fisch
@@ -1155,7 +1155,7 @@ translations:
     article: ein
   REDSTONE_BLOCK:
     singular: Redstoneblock
-    plural: Redstoneblöcke
+    plural: RedstoneblÃ¶cke
     article: einen
   REDSTONE_COMPARATOR:
     singular: Redstone Komparator
@@ -1199,7 +1199,7 @@ translations:
     article: ein
   SADDLE:
     singular: Sattel
-    plural: Sättel
+    plural: SÃ¤ttel
     article: einen
   SAND:
     singular: Sand
@@ -1238,20 +1238,20 @@ translations:
     plural: Schilder
     article: einen
   SKULL:
-    singular: Schädel/Kopf
-    plural: Schädel/Köpfe
+    singular: SchÃ¤del/Kopf
+    plural: SchÃ¤del/KÃ¶pfe
     article: einen
   SKULL_ITEM:
-    singular: Schädel/Kopf
-    plural: Schädel/Köpfe
+    singular: SchÃ¤del/Kopf
+    plural: SchÃ¤del/KÃ¶pfe
     article: einen
   SLIME_BALL:
     singular: Schleimball
-    plural: Schleimbälle
+    plural: SchleimbÃ¤lle
     article: einen
   SLIME_BLOCK:
     singular: Schleimblock
-    plural: Schleimblöcke
+    plural: SchleimblÃ¶cke
     article: einen
   SMOOTH_BRICK:
     singular: Steinziegel
@@ -1267,11 +1267,11 @@ translations:
     article: einen
   SNOW_BALL:
     singular: Schneeball
-    plural: Schneebälle
+    plural: SchneebÃ¤lle
     article: einen
   SNOW_BLOCK:
     singular: Schneeblock
-    plural: Schneeblöcke
+    plural: SchneeblÃ¶cke
     article: einen
   SOIL:
     singular: Erde
@@ -1291,39 +1291,39 @@ translations:
     article: ein
   SPONGE:
     singular: Schwamm
-    plural: Schwämme
+    plural: SchwÃ¤mme
     article: einen
   SPRUCE_DOOR:
-    singular: Fichtenholztür
-    plural: Fichtenholztüren
+    singular: FichtenholztÃ¼r
+    plural: FichtenholztÃ¼ren
     article: eine
   SPRUCE_DOOR_ITEM:
-    singular: Fichtenholztür
-    plural: Fichtenholztüren
+    singular: FichtenholztÃ¼r
+    plural: FichtenholztÃ¼ren
     article: eine
   SPRUCE_FENCE:
     singular: Fichtenholzzaun
-    plural: Fichtenholzzäune
+    plural: FichtenholzzÃ¤une
     article: einen
   SPRUCE_FENCE_GATE:
-    singular: Fichtenholzzauntür
-    plural: Fichtenholzzauntüren
+    singular: FichtenholzzauntÃ¼r
+    plural: FichtenholzzauntÃ¼ren
     article: eine
   SPRUCE_WOOD_STAIRS:
     singular: Fichtenholztreppe
     plural: Fichtenholztreppen
     article: eine
   STAINED_CLAY:
-    singular: Gefärbten Ton
-    plural: Gefärbter Ton
+    singular: GefÃ¤rbten Ton
+    plural: GefÃ¤rbter Ton
     article: einen
   STAINED_GLASS:
-    singular: Gefärbtes Glas
-    plural: Gefärbtes Glas
+    singular: GefÃ¤rbtes Glas
+    plural: GefÃ¤rbtes Glas
     article: ein
   STAINED_GLASS_PANE:
-    singular: Gefärbte Glasscheibe
-    plural: Gefärbte Glasscheiben
+    singular: GefÃ¤rbte Glasscheibe
+    plural: GefÃ¤rbte Glasscheiben
     article: eine
   STANDING_BANNER:
     singular: Banner
@@ -1343,7 +1343,7 @@ translations:
     article: eine
   STICK:
     singular: Stock
-    plural: Stöcke
+    plural: StÃ¶cke
     article: einen
   STONE:
     singular: Stein
@@ -1351,11 +1351,11 @@ translations:
     article: einen
   STONE_AXE:
     singular: Steinaxt
-    plural: Steinäxte
+    plural: SteinÃ¤xte
     article: eine
   STONE_BUTTON:
     singular: Steinknopf
-    plural: Steinknöpfe
+    plural: SteinknÃ¶pfe
     article: einen
   STONE_HOE:
     singular: Steinhacke
@@ -1382,12 +1382,12 @@ translations:
     plural: Steinschwerter
     article: ein
   STORAGE_MINECART:
-    singular: Güterlore
-    plural: Güterloren
+    singular: GÃ¼terlore
+    plural: GÃ¼terloren
     article: eine
   STRING:
     singular: Faden
-    plural: Fäden
+    plural: FÃ¤den
     article: einen
   SUGAR:
     singular: Zucker
@@ -1418,8 +1418,8 @@ translations:
     plural: Fackel
     article: eine
   TRAP_DOOR:
-    singular: Falltür
-    plural: Falltüren
+    singular: FalltÃ¼r
+    plural: FalltÃ¼ren
     article: eine
   TRAPPED_CHEST:
     singular: Redstonetruhe
@@ -1427,7 +1427,7 @@ translations:
     article: eine
   TRIPWIRE:
     singular: Faden
-    plural: Fäden
+    plural: FÃ¤den
     article: einen
   TRIPWIRE_HOOK:
     singular: Haken
@@ -1459,7 +1459,7 @@ translations:
     article: einen
   WATER_LILY:
     singular: Seerosenblatt
-    plural: Seerosenblätter
+    plural: SeerosenblÃ¤tter
     article: ein
   WEB:
     singular: Spinnennetz
@@ -1475,15 +1475,15 @@ translations:
     article: eine
   WOOD_AXE:
     singular: Holzaxt
-    plural: Holzäxte
+    plural: HolzÃ¤xte
     article: eine
   WOOD_BUTTON:
     singular: Holzknopf
-    plural: Holzknöpfe
+    plural: HolzknÃ¶pfe
     article: einen
   WOOD_DOOR:
-    singular: Holztür
-    plural: Holztüren
+    singular: HolztÃ¼r
+    plural: HolztÃ¼ren
     article: eine
   WOOD_DOUBLE_STEP:
     singular: Holzstufe
@@ -1518,8 +1518,8 @@ translations:
     plural: Holzschwerter
     article: ein
   WOODEN_DOOR:
-    singular: Holztür
-    plural: Holztüren
+    singular: HolztÃ¼r
+    plural: HolztÃ¼ren
     article: eine
   WOOL:
     singular: Wolle
@@ -1527,11 +1527,11 @@ translations:
     article: eine
   WORKBENCH:
     singular: Werkbank
-    plural: Werkbänke
+    plural: WerkbÃ¤nke
     article: eine
   WRITTEN_BOOK:
     singular: Beschriebenes Buch
-    plural: Beschriebene Bücher
+    plural: Beschriebene BÃ¼cher
     article: ein
   YELLOW_FLOWER:
     singular: Blume

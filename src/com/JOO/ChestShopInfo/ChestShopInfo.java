@@ -47,7 +47,7 @@ public class ChestShopInfo extends JavaPlugin {
                 saveDefaultConfig();
             } else {
                 getLogger().info("Config.yml found, loading!");
-                reloadConfig();
+                config = this.getConfig();
             }
         } catch (Exception e) {
             e.printStackTrace();
