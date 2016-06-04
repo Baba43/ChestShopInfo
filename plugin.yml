@@ -17,3 +17,9 @@ permissions:
   ChestShopInfo.use:
     description: Erlaubt das Nutzen von /shopinfo.
     default: true
+  ChestShopInfo.reload:
+    description: Laed das Plugin neu.
+  ChestShopInfo.debug:
+    description: Aktiviert den Debug-Modus
+  ChestShopInfo.*:
+    description: Beinhaltet alle Berechtigungen von ChestShopInfo.
