@@ -22,9 +22,11 @@ public class MaterialTranslations {
   *    
   */
     public MaterialTranslations( ChestShopInfo instance) {
+    	translations.clear();
     	plugin = instance;
+    	plugin.reloadConfig();
     	FileConfiguration cfg = plugin.getConfig();
-    	if(cfg == null) System.out.println("Fehler");	// Einsatz vom Logger
+    	if(cfg == null) plugin.getLogger().warning("Config nicht gefunden!");	// Einsatz vom Logger
     	
     	ConfigurationSection cfgSection = cfg.getConfigurationSection("translations");
     	for(String key : cfgSection.getKeys(false)) {
@@ -33,18 +35,22 @@ public class MaterialTranslations {
 		    	String singular = cfg.getString("translations." + key + ".singular");
 		    	String plural = cfg.getString("translations." + key + ".plural");
 		    	String article = cfg.getString("translations." + key + ".article");
-		    	if(ChestShopInfo.debug) System.out.println("New map: " + key + ", " + singular + ", " + plural + ", " + article + "");
+		    	if (singular == null || plural == null || article == null) plugin.getLogger().warning("Fehlerhafte Formatierung bei Teil " + key);
+		    	if(ChestShopInfo.debug) plugin.getLogger().info("New map: " + key + ", " + singular + ", " + plural + ", " + article + "");
 		        addMaterial(mat, singular, plural, article);
 	    	} catch (NullPointerException e) {
-	    		System.out.println("Fehlerhafte Formatierung bei Material" + key);
+	    		plugin.getLogger().warning("Material unbekannt:" + key + ", Ueberspringe dieses Material.");
 	    	}
     	}
+    	plugin.getLogger().info("Es wurden " + translations.size() + " Uebersetzungen gefunden und gespeichert." );
     }
 
+    // Gibt die Übersetzung des übergebenen Strings und der Anzahl aus. Sollte der Anzahl eins sein, so wird der Singularfall ausgegeben.
     public String getTranslation(Material material, int amount) {
         Translation translation = translations.get(material);
-        if(translation != null)
+        if(translation != null) 
             return amount == 1 ? translation.getSingular() : translation.getPlural();
+        plugin.getLogger().warning("Material " + material + " nicht in der Config enthalten. Benutze Umformatierung.");;
         return material.name().toLowerCase();
     }
     
@@ -58,7 +64,7 @@ public class MaterialTranslations {
         translations.put(material, new Translation(singular, plural, article));
     }
 
-    private static class Translation {
+    public static class Translation {
         private String singular;
         private String plural;
         private String article;
@@ -77,9 +83,6 @@ public class MaterialTranslations {
             return plural;
         }
         
-        /*
-         * Gibt zurück, ob
-         */
         public String getArticle() {
         	return article;
         }

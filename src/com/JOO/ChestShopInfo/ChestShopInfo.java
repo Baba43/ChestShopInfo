@@ -15,15 +15,15 @@ public class ChestShopInfo extends JavaPlugin {
 	
 	public MaterialTranslations translations;
 	public static boolean debug=false;
-	public static FileConfiguration config = null;
+	public final FileConfiguration config = this.getConfig();
 	
 	
 	@Override
 	public void onEnable() {
 		
-		config = this.getConfig();
 		
 		createConfig();
+        reloadConfig();
 		translations = new MaterialTranslations(this);
 		
 		myExecutor = new MyCommandExecutor(this);
@@ -47,7 +47,6 @@ public class ChestShopInfo extends JavaPlugin {
                 saveDefaultConfig();
             } else {
                 getLogger().info("Config.yml found, loading!");
-                config = this.getConfig();
             }
         } catch (Exception e) {
             e.printStackTrace();

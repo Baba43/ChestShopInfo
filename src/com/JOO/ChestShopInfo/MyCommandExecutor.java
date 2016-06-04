@@ -55,26 +55,28 @@ public class MyCommandExecutor implements CommandExecutor {
 				sender.sendMessage(ChatColor.RED + "Du hast keine Berechtigung, diesen Befehl auszuführen.");
 				return true;
 			}
-			// hier fehlt noch eine Konsolenausgabe!
-			sender.sendMessage(ChatColor.RED + "Das Plugin wird neu geladen.");
+			plugin.getLogger().info("Das Plugin wird neu geladen.");
+			if(sender instanceof Player) sender.sendMessage(ChatColor.RED + "Das Plugin wird neu geladen.");
 			plugin.onEnable();
 			return true;
 		}
 		
-		if(args.length == 2 && args[0].equalsIgnoreCase("debug")) {
+		if(args.length > 0 && args[0].equalsIgnoreCase("debug")) {
 			if(!sender.hasPermission("ChestShopInfo.debug")) {
 				sender.sendMessage(ChatColor.RED + "Du hast keine Berechtigung, diesen Befehl auszuführen.");
 				return true;
 			}
-			if(args[1].equalsIgnoreCase("true")) {
+			if(args.length == 2 && args[1].equalsIgnoreCase("true")) {
 				ChestShopInfo.debug = true;
+				plugin.getLogger().info("Debug-Modus aktiviert");
 				sender.sendMessage(ChatColor.RED + "Debug-Modus aktiviert.");
 				return true;
-			} else if(args[1].equalsIgnoreCase("false")) {
+			} else if(args.length == 2 && args[1].equalsIgnoreCase("false")) {
 				ChestShopInfo.debug = false;
+				plugin.getLogger().info("Debug-Modus deaktiviert");
 				sender.sendMessage(ChatColor.RED + "Debug-Modus deaktiviert.");
 				return true;
-			} else if(args[1].equalsIgnoreCase("status")) {
+			} else if(args.length == 2 && args[1].equalsIgnoreCase("status")) {
 				if(ChestShopInfo.debug) { 
 					sender.sendMessage(ChatColor.RED + "Debug-Modus ist aktiviert.");
 					return true;
@@ -104,12 +106,14 @@ public class MyCommandExecutor implements CommandExecutor {
 		Block block = targetBlock(player);
 		// Kontrolle, ob angeschauter Block ein Schild ist.
 		if (block.getType() != Material.SIGN_POST && block.getType() != Material.WALL_SIGN) {
+			if(ChestShopInfo.debug) plugin.getLogger().info("Spieler " + player.getDisplayName() + " schaut nicht auf ein Schild.");
 			player.sendMessage(ChatColor.RED + "Du musst ein Schild anschauen");
 			return true;
 		}
 	
 		// Kontrolle, ob Schild ein ChestShop-Schild ist
 		if (!ChestShopSign.isValid(block)) {
+			if(ChestShopInfo.debug) plugin.getLogger().info("Spieler " + player.getDisplayName() + " schaut auf kein gültiges ShopSchild.");
 			player.sendMessage(ChatColor.RED + "Dies ist kein gültiges Shopschild!");
 			return true;
 		}
@@ -120,10 +124,15 @@ public class MyCommandExecutor implements CommandExecutor {
         
 		String amount = sign.getLine(1);
 		Double amountDouble = Double.parseDouble(amount);
+		int amountInt = Integer.parseInt(amount);
 		String prices = sign.getLine(2);
 		String signItemName = sign.getLine(3);
 		boolean buy = prices.contains("B") | prices.contains("b");
 		boolean sell = prices.contains("S") | prices.contains("s");
+		if(ChestShopInfo.debug) {
+			plugin.getLogger().info("Spieler " + player.getDisplayName() + " schaut auf Shopschild:");
+			plugin.getLogger().info("Schild beinhaltet: Name: " + name +" (AnzeigeName: " + ownerName + "), Menge: " + amount + ", Ver- bzw. Ankauf: " + prices + ", signItemName: " + signItemName);
+		}
 		
 		ItemStack item = MaterialUtil.getItem(signItemName); // Bekomme ItemStack über ChestShop-Methode
 		Material material = item.getType();
@@ -149,18 +158,17 @@ public class MyCommandExecutor implements CommandExecutor {
 		try {
 			itemString = convertItemStackToJson(item);
 		} catch (IllegalArgumentException e) {
-			System.out.println("ChestShopInfo: Es ist ein Fehler aufgetreten (IllegalArgumentException");
+			plugin.getLogger().warning("ChestShopInfo: Es ist ein Fehler aufgetreten (IllegalArgumentException");
 			player.sendMessage(ChatColor.RED + "Es ist ein Fehler aufgetreten. Bitte kontaktiere einen Admin.");
 			return true;
 		}
 		HoverEvent event = new HoverEvent(HoverEvent.Action.SHOW_ITEM, new ComponentBuilder(itemString).create()); // HoverEffekt erstellt
 
-		String translatedName = translations.getTranslation(material, Integer.parseInt(amount));
-
+		String translatedName = null; // getTranslation(material, Integer.parseInt(amount));
+		translatedName = translations.getTranslation(material, amountInt);
 		if (amount.equalsIgnoreCase("1")) { // Singular
 			amount = translations.getArticle(material);
 		}
-		
 		player.spigot().sendMessage(getInfoText(ownerName));
 
 		if (buy) { // Wenn der Shop verkauft (man kann kaufen)
@@ -278,6 +286,7 @@ public class MyCommandExecutor implements CommandExecutor {
 		}
 		return true;
 	}
+		
 	
 	
 	// Info-Text

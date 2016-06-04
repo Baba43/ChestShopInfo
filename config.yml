@@ -614,8 +614,8 @@
     plural: goldene Platten 
     article: eine
   GOLD_RECORD:
-    singular: goldene Schallplatte
-    plural: goldene Schallplatten
+    singular: Schallplatte
+    plural: Schallplatten
     article: eine
   GOLD_SPADE:
     singular: Goldschaufel
@@ -642,8 +642,8 @@
     plural: Kies
     article: ein
   GREEN_RECORD:
-    singular: grüne Schallplatte
-    plural: grüne Schallplatten
+    singular: Schallplatte
+    plural: Schallplatten
     article: eine
   GRILLED_PORK:
     singular: Gebratenes Schweinefleisch
