@@ -8,35 +8,35 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 
 public class ChestShopInfo extends JavaPlugin {
-	
-	private MyCommandExecutor myExecutor;
-	public static Plugin plugin;
-	public static ChestShopInfo instance;
-	
-	public MaterialTranslations translations;
-	public static boolean debug=false;
-	public final FileConfiguration config = this.getConfig();
-	
-	
-	@Override
-	public void onEnable() {
-		
-		
-		createConfig();
+
+    private MyCommandExecutor myExecutor;
+    public static Plugin plugin;
+    public static ChestShopInfo instance;
+
+    public MaterialTranslations translations;
+    public static boolean debug = false;
+    public final FileConfiguration config = this.getConfig();
+
+
+    @Override
+    public void onEnable() {
+
+
+        createConfig();
         reloadConfig();
-		translations = new MaterialTranslations(this);
-		
-		myExecutor = new MyCommandExecutor(this);
-		getCommand("shopinfo").setExecutor(myExecutor);
-		
-	}
-	
-	@Override
-	public void onDisable() {
-		
-	}
-	
-	public void createConfig() {
+        translations = new MaterialTranslations(this);
+
+        myExecutor = new MyCommandExecutor(this);
+        getCommand("shopinfo").setExecutor(myExecutor);
+
+    }
+
+    @Override
+    public void onDisable() {
+
+    }
+
+    public void createConfig() {
         try {
             if (!getDataFolder().exists()) {
                 getDataFolder().mkdirs();
@@ -52,15 +52,15 @@ public class ChestShopInfo extends JavaPlugin {
             e.printStackTrace();
         }
     }
-	
 
-    public class ConfigListener implements Listener{
-    	ChestShopInfo plugin;
-     
-    public ConfigListener(ChestShopInfo instance) {
-    	plugin = instance;
+
+    public class ConfigListener implements Listener {
+        ChestShopInfo plugin;
+
+        public ConfigListener(ChestShopInfo instance) {
+            plugin = instance;
+        }
+
     }
-     
-    }
-	
+
 }
