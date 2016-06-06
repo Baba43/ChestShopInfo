@@ -9,7 +9,7 @@ import java.io.File;
 
 public class ChestShopInfo extends JavaPlugin {
 
-    private MyCommandExecutor myExecutor;
+    private ChestShopInfoCommands myExecutor;
     public static Plugin plugin;
     public static ChestShopInfo instance;
 
@@ -26,7 +26,7 @@ public class ChestShopInfo extends JavaPlugin {
         reloadConfig();
         translations = new MaterialTranslations(this);
 
-        myExecutor = new MyCommandExecutor(this);
+        myExecutor = new ChestShopInfoCommands(this);
         getCommand("shopinfo").setExecutor(myExecutor);
 
     }

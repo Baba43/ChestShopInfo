@@ -23,10 +23,10 @@ import java.lang.reflect.Method;
 import java.util.Set;
 import java.util.logging.Level;
 
-public class MyCommandExecutor implements CommandExecutor {
+public class ChestShopInfoCommands implements CommandExecutor {
     ChestShopInfo plugin;
 
-    public MyCommandExecutor(ChestShopInfo instance) {
+    public ChestShopInfoCommands(ChestShopInfo instance) {
         plugin = instance;
     }
 
