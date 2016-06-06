@@ -12,7 +12,7 @@ import java.util.Map;
 public class ReflectionUtil {
 
     /*
-     * The server version string to location NMS & OBC classes
+     * The server version string to location NMS or OBC classes
      */
     private static String versionString;
 
@@ -37,7 +37,7 @@ public class ReflectionUtil {
     private static Map<Class<?>, Map<String, Field>> loadedFields = new HashMap<Class<?>, Map<String, Field>>();
 
     /**
-     * Gets the version string for NMS & OBC class paths
+     * Gets the version string for NMS or OBC class paths
      *
      * @return The version string of OBC and NMS packages
      */

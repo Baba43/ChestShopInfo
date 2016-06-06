@@ -1,9 +1,14 @@
 package com.JOO.ChestShopInfo;
 
-import java.lang.reflect.Method;
-import java.util.Set;
-import java.util.logging.Level;
-
+import com.Acrobot.Breeze.Utils.MaterialUtil;
+import com.Acrobot.Breeze.Utils.PriceUtil;
+import com.Acrobot.ChestShop.Signs.ChestShopSign;
+import com.Acrobot.ChestShop.UUIDs.NameManager;
+import com.sainttx.auctions.util.ReflectionUtil;
+import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.chat.ComponentBuilder;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -14,16 +19,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import com.Acrobot.Breeze.Utils.MaterialUtil;
-import com.Acrobot.Breeze.Utils.PriceUtil;
-import com.Acrobot.ChestShop.Signs.ChestShopSign;
-import com.Acrobot.ChestShop.UUIDs.NameManager;
-import com.sainttx.auctions.util.ReflectionUtil;
-
-import net.md_5.bungee.api.ChatColor;
-import net.md_5.bungee.api.chat.ComponentBuilder;
-import net.md_5.bungee.api.chat.HoverEvent;
-import net.md_5.bungee.api.chat.TextComponent;
+import java.lang.reflect.Method;
+import java.util.Set;
+import java.util.logging.Level;
 
 public class MyCommandExecutor implements CommandExecutor {
 	ChestShopInfo plugin;
@@ -77,7 +75,7 @@ public class MyCommandExecutor implements CommandExecutor {
 				sender.sendMessage(ChatColor.RED + "Debug-Modus deaktiviert.");
 				return true;
 			} else if(args.length == 2 && args[1].equalsIgnoreCase("status")) {
-				if(ChestShopInfo.debug) { 
+				if(ChestShopInfo.debug) {
 					sender.sendMessage(ChatColor.RED + "Debug-Modus ist aktiviert.");
 					return true;
 				} else {

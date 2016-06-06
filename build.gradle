@@ -1,0 +1,28 @@
+version = 'SERVER-SNAPSHOT'
+group = "de.terraconia";
+
+project.ext.targetServerGroups = ['survival']
+project.ext.targetServers = ['spawn']
+project.ext.useWindowsEncoding = true
+
+buildscript {
+    if (project.hasProperty('tcGradleScripts')) {
+        apply from: file(tcGradleScripts + '/tc-buildscript.gradle'), to: buildscript
+    }
+    repositories {
+        mavenCentral()
+    }
+}
+
+if (project.hasProperty('tcGradleScripts')) {
+    apply from: tcGradleScripts + '/tc-project.gradle'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'tc.plugins', name: 'bukkit', version: 'SERVER-SNAPSHOT', changing: true, transitive: false
+    compile group: 'tc.plugins', name: 'chestshop', version: 'SERVER-SNAPSHOT', changing: true, transitive: false
+}
