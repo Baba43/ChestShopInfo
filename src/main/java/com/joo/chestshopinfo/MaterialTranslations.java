@@ -20,11 +20,11 @@ public class MaterialTranslations {
      *     - den unbestimmten Artikel für den Singularfall.
      *
      */
-    public MaterialTranslations(ConfigurationSection cfgSection) {
-        loadMaterials(cfgSection);
+    public MaterialTranslations(ChestShopInfo plugin) {
+        this.plugin = plugin;
     }
 
-    private void loadMaterials(ConfigurationSection cfgSection) {
+    public void loadMaterials(ConfigurationSection cfgSection) {
         translations.clear();
         for (String key : cfgSection.getKeys(false)) {
             ConfigurationSection cfg = cfgSection.getConfigurationSection(key);

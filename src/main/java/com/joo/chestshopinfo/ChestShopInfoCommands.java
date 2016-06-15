@@ -32,73 +32,37 @@ public class ChestShopInfoCommands implements CommandExecutor {
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String cmdLabel, String[] args) {
-        Player player = null;
-        if (sender instanceof Player) player = (Player) sender;
-        // Rückmeldung bei "/chestshop info"
-        if (args.length == 1 && args[0].equalsIgnoreCase("info")) {
-            sender.sendMessage(ChatColor.GRAY + "Informationsplugin von JOO200.");
-            return true;
-        }
-
-        // Rückmeldung bei "/chestshop help"
-        if (args.length == 1 && args[0].equalsIgnoreCase("help")) {
-            sender.sendMessage(ChatColor.GRAY
-                    + "Schaue ein Shopschild an, von welchem du wissen möchtest, welches Item dieses verkauft. Führe dann "
-                    + ChatColor.GOLD + "/shopinfo" + ChatColor.GRAY + " aus.");
-            return true;
-        }
-
-        if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
-            if (!sender.hasPermission("ChestShopInfo.reload")) {
-                sender.sendMessage(ChatColor.RED + "Du hast keine Berechtigung, diesen Befehl auszuführen.");
-                return true;
+    public boolean onCommand(CommandSender sender, Command command, String cmdLabel, String[] args) {
+        if (args.length > 0) {
+            String cmd = args[0];
+            if (cmd.equalsIgnoreCase("info")) {
+                onPluginInfoRequest(sender);
+            } else if (cmd.equalsIgnoreCase("help")) {
+                onHelpRequest(sender);
+            } else if (cmd.equalsIgnoreCase("reload")) {
+                onReloadRequest(sender);
+            } else if (cmd.equalsIgnoreCase("debug")) {
+                onDebugRequest(sender, args);
             }
-            plugin.getLogger().info("Das Plugin wird neu geladen.");
-            if (sender instanceof Player) sender.sendMessage(ChatColor.RED + "Das Plugin wird neu geladen.");
-            plugin.onEnable();
-            return true;
+        } else {
+            onShopInfoRequest(sender);
         }
 
-        if (args.length > 0 && args[0].equalsIgnoreCase("debug")) {
-            if (!sender.hasPermission("ChestShopInfo.debug")) {
-                sender.sendMessage(ChatColor.RED + "Du hast keine Berechtigung, diesen Befehl auszuführen.");
-                return true;
-            }
-            if (args.length == 2 && args[1].equalsIgnoreCase("true")) {
-                ChestShopInfo.debug = true;
-                plugin.getLogger().info("Debug-Modus aktiviert");
-                sender.sendMessage(ChatColor.RED + "Debug-Modus aktiviert.");
-                return true;
-            } else if (args.length == 2 && args[1].equalsIgnoreCase("false")) {
-                ChestShopInfo.debug = false;
-                plugin.getLogger().info("Debug-Modus deaktiviert");
-                sender.sendMessage(ChatColor.RED + "Debug-Modus deaktiviert.");
-                return true;
-            } else if (args.length == 2 && args[1].equalsIgnoreCase("status")) {
-                if (ChestShopInfo.debug) {
-                    sender.sendMessage(ChatColor.RED + "Debug-Modus ist aktiviert.");
-                    return true;
-                } else {
-                    sender.sendMessage(ChatColor.RED + "Debug-Modus ist deaktiviert.");
-                    return true;
-                }
-            } else {
-                sender.sendMessage(ChatColor.RED + "Ungültige Eingabe. (true | false)");
-                return true;
-            }
-        }
+        return true;
+    }
 
-        // Kontrolle, ob der Befehl von einem Spieler ausgeführt wurde.
+    private void onShopInfoRequest(CommandSender sender) {
         if (!(sender instanceof Player)) {
             sender.sendMessage(ChatColor.RED + "Du musst ein Spieler sein.");
-            return true;
+            return;
         }
+
+        Player player = (Player) sender;
 
         // Kontrolle der Permissions
         if (!player.hasPermission("ChestShopInfo.use")) {
             sender.sendMessage(ChatColor.RED + "Du hast keine Berechtigung, diesen Befehl auszuführen.");
-            return true;
+            return;
         }
 
         Block block = targetBlock(player);
@@ -107,7 +71,7 @@ public class ChestShopInfoCommands implements CommandExecutor {
             if (ChestShopInfo.debug)
                 plugin.getLogger().info("Spieler " + player.getDisplayName() + " schaut nicht auf ein Schild.");
             player.sendMessage(ChatColor.RED + "Du musst ein Schild anschauen");
-            return true;
+            return;
         }
 
         // Kontrolle, ob Schild ein ChestShop-Schild ist
@@ -115,7 +79,7 @@ public class ChestShopInfoCommands implements CommandExecutor {
             if (ChestShopInfo.debug)
                 plugin.getLogger().info("Spieler " + player.getDisplayName() + " schaut auf kein gültiges ShopSchild.");
             player.sendMessage(ChatColor.RED + "Dies ist kein gültiges Shopschild!");
-            return true;
+            return;
         }
 
         Sign sign = (Sign) block.getState();
@@ -158,7 +122,7 @@ public class ChestShopInfoCommands implements CommandExecutor {
         } catch (IllegalArgumentException e) {
             plugin.getLogger().warning("ChestShopInfo: Es ist ein Fehler aufgetreten (IllegalArgumentException");
             player.sendMessage(ChatColor.RED + "Es ist ein Fehler aufgetreten. Bitte kontaktiere einen Admin.");
-            return true;
+            return;
         }
         HoverEvent event = new HoverEvent(HoverEvent.Action.SHOW_ITEM, new ComponentBuilder(itemString).create()); // HoverEffekt erstellt
 
@@ -266,9 +230,57 @@ public class ChestShopInfoCommands implements CommandExecutor {
             toSend.addExtra(temp);
 
             player.spigot().sendMessage(toSend);
-
         }
-        return true;
+    }
+
+    private boolean onDebugRequest(CommandSender sender, String[] args) {
+        if (!sender.hasPermission("ChestShopInfo.debug")) {
+            sender.sendMessage(ChatColor.RED + "Du hast keine Berechtigung, diesen Befehl auszuführen.");
+            return true;
+        }
+        if (args.length == 2 && args[1].equalsIgnoreCase("true")) {
+            ChestShopInfo.debug = true;
+            plugin.getLogger().info("Debug-Modus aktiviert");
+            sender.sendMessage(ChatColor.RED + "Debug-Modus aktiviert.");
+            return true;
+        } else if (args.length == 2 && args[1].equalsIgnoreCase("false")) {
+            ChestShopInfo.debug = false;
+            plugin.getLogger().info("Debug-Modus deaktiviert");
+            sender.sendMessage(ChatColor.RED + "Debug-Modus deaktiviert.");
+            return true;
+        } else if (args.length == 2 && args[1].equalsIgnoreCase("status")) {
+            if (ChestShopInfo.debug) {
+                sender.sendMessage(ChatColor.RED + "Debug-Modus ist aktiviert.");
+                return true;
+            } else {
+                sender.sendMessage(ChatColor.RED + "Debug-Modus ist deaktiviert.");
+                return true;
+            }
+        } else {
+            sender.sendMessage(ChatColor.RED + "Ungültige Eingabe. (true | false)");
+            return true;
+        }
+    }
+
+    private void onReloadRequest(CommandSender sender) {
+        if (!sender.hasPermission("ChestShopInfo.reload")) {
+            sender.sendMessage(ChatColor.RED + "Du hast keine Berechtigung, diesen Befehl auszuführen.");
+            return;
+        }
+        plugin.getLogger().info("Das Plugin wird neu geladen.");
+        if (sender instanceof Player)
+            sender.sendMessage(ChatColor.RED + "Das Plugin wird neu geladen.");
+        plugin.reloadConfig();
+    }
+
+    private void onHelpRequest(CommandSender sender) {
+        sender.sendMessage(ChatColor.GRAY
+                + "Schaue ein Shopschild an, von welchem du wissen möchtest, welches Item dieses verkauft. Führe dann "
+                + ChatColor.GOLD + "/shopinfo" + ChatColor.GRAY + " aus.");
+    }
+
+    private void onPluginInfoRequest(CommandSender sender) {
+        sender.sendMessage(ChatColor.GRAY + "Informationsplugin von JOO200.");
     }
 
     // Info-Text
