@@ -4,6 +4,7 @@ import com.Acrobot.Breeze.Utils.MaterialUtil;
 import com.Acrobot.Breeze.Utils.PriceUtil;
 import com.Acrobot.ChestShop.Signs.ChestShopSign;
 import com.Acrobot.ChestShop.UUIDs.NameManager;
+import com.joo.chestshopinfo.help.FormatHelper;
 import com.sainttx.auctions.util.ReflectionUtil;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.ComponentBuilder;
@@ -172,14 +173,7 @@ public class ChestShopInfoCommands implements CommandExecutor {
 
         if (buy) { // Wenn der Shop verkauft (man kann kaufen)
             double buyPriceDouble = PriceUtil.getBuyPrice(prices);
-            String buyPrice;
-            if (buyPriceDouble == 1) { // Wenn das Item nur 1 Eskone kostet
-                buyPrice = "eine Eskone";
-            } else if (buyPriceDouble == 0) {
-                buyPrice = "umsonst";
-            } else { // ansonsten "Zahl + Eskonen"
-                buyPrice = String.valueOf(buyPriceDouble) + " Eskonen";
-            }
+            String buyPrice = FormatHelper.formatBuyPrice(buyPriceDouble);
 
             double pricePerItem = Math.round(100.0 * buyPriceDouble / amountDouble);
             double pricePerStack = Math.round(6400.0 * buyPriceDouble / amountDouble);
@@ -229,14 +223,7 @@ public class ChestShopInfoCommands implements CommandExecutor {
         }
         if (sell) { // Ebenso für den Ankauf
             double sellPriceDouble = PriceUtil.getSellPrice(prices);
-            String sellPrice;
-            if (sellPriceDouble == 1) {
-                sellPrice = "eine Eskone";
-            } else if (sellPriceDouble == 0) {
-                sellPrice = "umsonst";
-            } else {
-                sellPrice = String.valueOf(sellPriceDouble) + " Eskonen";
-            }
+            String sellPrice = FormatHelper.formatBuyPrice(sellPriceDouble);
 
             //Anzeige des Preises/Stack und /Stück im Hover.
             double pricePerItem = Math.round(100.0 * sellPriceDouble / amountDouble);
