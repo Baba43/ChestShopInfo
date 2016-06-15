@@ -24,9 +24,11 @@ import static com.joo.chestshopinfo.help.BukkitHelper.targetBlock;
 public class ChestShopInfoCommands implements CommandExecutor {
 
     private ChestShopInfo plugin;
+    private MaterialTranslations translations;
 
-    public ChestShopInfoCommands(ChestShopInfo instance) {
-        plugin = instance;
+    public ChestShopInfoCommands(ChestShopInfo instance, MaterialTranslations translations) {
+        this.plugin = instance;
+        this.translations = translations;
     }
 
     @Override
@@ -134,7 +136,6 @@ public class ChestShopInfoCommands implements CommandExecutor {
 
         ItemStack item = MaterialUtil.getItem(signItemName); // Bekomme ItemStack über ChestShop-Methode
         Material material = item.getType();
-        MaterialTranslations translations = plugin.translations;
 
         TextComponent temp;    //temporar TextComponent
         TextComponent displayName = null;
