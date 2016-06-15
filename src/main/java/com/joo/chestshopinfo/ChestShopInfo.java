@@ -1,8 +1,9 @@
 package com.joo.chestshopinfo;
 
+import de.baba43.lib.config.ConfigHelper;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.io.File;
 
 public class ChestShopInfo extends JavaPlugin {
 
@@ -13,28 +14,12 @@ public class ChestShopInfo extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        createConfig();
-        reloadConfig();
-        translations = new MaterialTranslations(this);
+        FileConfiguration config = getConfig();
+        ConfigurationSection translations = ConfigHelper.getSection(config, "translations");
+        this.translations = new MaterialTranslations(translations);
 
         myExecutor = new ChestShopInfoCommands(this);
         getCommand("shopinfo").setExecutor(myExecutor);
-    }
-
-    private void createConfig() {
-        try {
-            if (!getDataFolder().exists()) {
-                getDataFolder().mkdirs();
-            }
-            File file = new File(getDataFolder(), "config.yml");
-            if (!file.exists()) {
-                getLogger().info("Config.yml not found, creating!");
-                saveDefaultConfig();
-            } else {
-                getLogger().info("Config.yml found, loading!");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        saveConfig();
     }
 }

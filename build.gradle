@@ -25,4 +25,5 @@ repositories {
 dependencies {
     compile group: 'tc.plugins', name: 'bukkit', version: 'SERVER-SNAPSHOT', changing: true, transitive: false
     compile group: 'tc.plugins', name: 'chestshop', version: 'SERVER-SNAPSHOT', changing: true, transitive: false
+    compile group: 'de.terraconia', name: 'Baba43Lib', version: 'SERVER-SNAPSHOT', changing: true, transitive: false
 }

@@ -2,7 +2,6 @@ package com.joo.chestshopinfo;
 
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.configuration.file.FileConfiguration;
 
 import java.util.EnumMap;
 import java.util.Map;
@@ -21,30 +20,39 @@ public class MaterialTranslations {
      *     - den unbestimmten Artikel für den Singularfall.
      *
      */
-    public MaterialTranslations(ChestShopInfo instance) {
-        translations.clear();
-        plugin = instance;
-        plugin.reloadConfig();
-        FileConfiguration cfg = plugin.getConfig();
-        if (cfg == null) plugin.getLogger().warning("Config nicht gefunden!");    // Einsatz vom Logger
+    public MaterialTranslations(ConfigurationSection cfgSection) {
+        loadMaterials(cfgSection);
+    }
 
-        ConfigurationSection cfgSection = cfg.getConfigurationSection("translations");
+    private void loadMaterials(ConfigurationSection cfgSection) {
+        translations.clear();
         for (String key : cfgSection.getKeys(false)) {
+            ConfigurationSection cfg = cfgSection.getConfigurationSection(key);
+
+            Material mat;
             try {
-                Material mat = Material.getMaterial(key);
-                String singular = cfg.getString("translations." + key + ".singular");
-                String plural = cfg.getString("translations." + key + ".plural");
-                String article = cfg.getString("translations." + key + ".article");
-                if (singular == null || plural == null || article == null)
-                    plugin.getLogger().warning("Fehlerhafte Formatierung bei Teil " + key);
-                if (ChestShopInfo.debug)
-                    plugin.getLogger().info("New map: " + key + ", " + singular + ", " + plural + ", " + article + "");
-                addMaterial(mat, singular, plural, article);
+                mat = Material.getMaterial(key);
             } catch (NullPointerException e) {
                 plugin.getLogger().warning("Material unbekannt:" + key + ", Ueberspringe dieses Material.");
+                continue;
             }
+
+            String singular = cfg.getString("singular");
+            String plural = cfg.getString("plural");
+            String article = cfg.getString("article");
+
+            if (singular == null || plural == null || article == null) {
+                plugin.getLogger().warning("Fehlerhafte Formatierung bei Teil " + key);
+                continue;
+            }
+
+            addMaterial(mat, singular, plural, article);
         }
         plugin.getLogger().info("Es wurden " + translations.size() + " Uebersetzungen gefunden und gespeichert.");
+    }
+
+    private void addMaterial(Material material, String singular, String plural, String article) {
+        translations.put(material, new Translation(singular, plural, article));
     }
 
     // Gibt die Übersetzung des übergebenen Strings und der Anzahl aus. Sollte der Anzahl eins sein, so wird der Singularfall ausgegeben.
@@ -60,10 +68,6 @@ public class MaterialTranslations {
         Translation translation = translations.get(material);
         if (translation == null) return "ein";
         return translation.getArticle();
-    }
-
-    private void addMaterial(Material material, String singular, String plural, String article) {
-        translations.put(material, new Translation(singular, plural, article));
     }
 
     public static class Translation {
