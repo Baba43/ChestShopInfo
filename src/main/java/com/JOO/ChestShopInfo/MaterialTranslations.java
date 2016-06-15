@@ -11,7 +11,7 @@ import java.util.Map;
 public class MaterialTranslations {
 
     private Map<Material, Translation> translations = new EnumMap<>(Material.class);
-    ChestShopInfo plugin;
+    private ChestShopInfo plugin;
 
     /*
      * 	Die Itemnamen werden aus der Config geladen und in einer Map gespeichert. Diese Map beinhaltet:

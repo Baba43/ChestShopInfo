@@ -24,7 +24,8 @@ import java.util.Set;
 import java.util.logging.Level;
 
 public class ChestShopInfoCommands implements CommandExecutor {
-    ChestShopInfo plugin;
+
+    private ChestShopInfo plugin;
 
     public ChestShopInfoCommands(ChestShopInfo instance) {
         plugin = instance;
@@ -137,7 +138,7 @@ public class ChestShopInfoCommands implements CommandExecutor {
         Material material = item.getType();
         MaterialTranslations translations = plugin.translations;
 
-        TextComponent temp = null;    //temporar TextComponent
+        TextComponent temp;    //temporar TextComponent
         TextComponent displayName = null;
         if (item.hasItemMeta() && item.getItemMeta().hasDisplayName()) {
             displayName = new TextComponent(" (umbenannt zu: ");
@@ -152,8 +153,7 @@ public class ChestShopInfoCommands implements CommandExecutor {
             displayName.addExtra(temp);
         }
 
-
-        String itemString = null; // Umwandlung des ItemStacks zu JSON. Für Hovereffekt
+        String itemString; // Umwandlung des ItemStacks zu JSON. Für Hovereffekt
         try {
             itemString = convertItemStackToJson(item);
         } catch (IllegalArgumentException e) {
@@ -163,7 +163,7 @@ public class ChestShopInfoCommands implements CommandExecutor {
         }
         HoverEvent event = new HoverEvent(HoverEvent.Action.SHOW_ITEM, new ComponentBuilder(itemString).create()); // HoverEffekt erstellt
 
-        String translatedName = null; // getTranslation(material, Integer.parseInt(amount));
+        String translatedName; // getTranslation(material, Integer.parseInt(amount));
         translatedName = translations.getTranslation(material, amountInt);
         if (amount.equalsIgnoreCase("1")) { // Singular
             amount = translations.getArticle(material);
@@ -172,7 +172,7 @@ public class ChestShopInfoCommands implements CommandExecutor {
 
         if (buy) { // Wenn der Shop verkauft (man kann kaufen)
             double buyPriceDouble = PriceUtil.getBuyPrice(prices);
-            String buyPrice = null;
+            String buyPrice;
             if (buyPriceDouble == 1) { // Wenn das Item nur 1 Eskone kostet
                 buyPrice = "eine Eskone";
             } else if (buyPriceDouble == 0) {
@@ -229,7 +229,7 @@ public class ChestShopInfoCommands implements CommandExecutor {
         }
         if (sell) { // Ebenso für den Ankauf
             double sellPriceDouble = PriceUtil.getSellPrice(prices);
-            String sellPrice = null;
+            String sellPrice;
             if (sellPriceDouble == 1) {
                 sellPrice = "eine Eskone";
             } else if (sellPriceDouble == 0) {
@@ -286,7 +286,6 @@ public class ChestShopInfoCommands implements CommandExecutor {
         return true;
     }
 
-
     // Info-Text
     private TextComponent getInfoText(String pString) {
         TextComponent info = new TextComponent("[ShopInfo]: ");
@@ -294,8 +293,6 @@ public class ChestShopInfoCommands implements CommandExecutor {
         TextComponent temp = new TextComponent("Informationen über einen ChestShop von " + pString + ":");
         temp.setColor(ChatColor.GRAY);
         info.addExtra(temp);
-
-
         return info;
     }
 
@@ -305,7 +302,7 @@ public class ChestShopInfoCommands implements CommandExecutor {
     }
 
     // Convert to JSON:
-    public String convertItemStackToJson(ItemStack itemStack) {
+    private String convertItemStackToJson(ItemStack itemStack) {
         // ItemStack methods to get a net.minecraft.server.ItemStack object for
         // serialization
         Class<?> craftItemStackClazz = ReflectionUtil.getOBCClass("inventory.CraftItemStack");
@@ -338,5 +335,4 @@ public class ChestShopInfoCommands implements CommandExecutor {
         // Return a string representation of the serialized object
         return itemAsJsonObject.toString();
     }
-
 }
