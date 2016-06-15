@@ -2,7 +2,7 @@ name: ChestShopInfo
 version: 1.0
 description: Informationen ueber Chestshop.
 author: JOO200
-main: com.JOO.ChestShopInfo.ChestShopInfo
+main: com.joo.chestshopinfo
 prefix: ChestShopInfo
 default-permission: false
 depend: [ChestShop]

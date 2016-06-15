@@ -1,4 +1,4 @@
-package com.JOO.ChestShopInfo;
+package com.joo.chestshopinfo;
 
 import com.Acrobot.Breeze.Utils.MaterialUtil;
 import com.Acrobot.Breeze.Utils.PriceUtil;

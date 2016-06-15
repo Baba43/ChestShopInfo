@@ -1,4 +1,4 @@
-package com.JOO.ChestShopInfo;
+package com.joo.chestshopinfo;
 
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
